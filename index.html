@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Свадебное приглашение — Анна & Сергей</title>
+
+  <!-- Шрифты -->
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Sacramento&display=swap" rel="stylesheet">
+  <!-- Анимации -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --main-color: #b91c1c;
+      --accent-color: #e11d48;
+      --text-color: #333;
+      --bg-light: rgba(255,255,255,0.95);
+      --font-heading: 'Alex Brush', cursive;
+      --font-body: 'Sacramento', cursive;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: var(--font-body);
+      background: url("background.png") no-repeat center top fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: rgba(255, 255, 255, 0.85);
+      border-radius: 0 0 20px 20px;
+    }
+
+    header h1 {
+      font-family: var(--font-heading);
+      font-size: 3.5em;
+      font-weight: 700;
+      color: var(--main-color);
+      margin-bottom: 10px;
+    }
+
+    header .heart {
+      color: var(--accent-color);
+      font-size: 1.2em;
+      margin: 0 10px;
+    }
+
+    header p {
+      font-size: 1.4em;
+      color: #555;
+      margin: 5px 0;
+    }
+
+    #countdown {
+      font-size: 1.5em;
+      color: var(--main-color);
+      margin-top: 15px;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1000px;
+      margin: 20px auto;
+      padding: 0 10px;
+    }
+
+    section {
+      background: var(--bg-light);
+      margin: 20px 0;
+      padding: 25px 20px;
+      border-radius: 16px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+    }
+
+    section h2 {
+      margin-top: 0;
+      color: var(--main-color);
+      font-size: 2em;
+      font-weight: 600;
+    }
+
+    .text {
+      flex: 1 1 55%;
+      min-width: 250px;
+      font-size: 1.3em;
+      line-height: 1.6;
+    }
+
+    .photo {
+      flex: 1 1 40%;
+      min-width: 250px;
+    }
+
+    .photo img {
+      width: 100%;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    ul { padding-left: 20px; margin: 0; }
+
+    ul li { margin: 10px 0; }
+
+    a {
+      color: var(--main-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    footer {
+      margin: 40px auto;
+      font-size: 1em;
+      color: #555;
+      text-align: center;
+      background: rgba(255,255,255,0.7);
+      padding: 10px;
+      border-radius: 12px;
+      max-width: 300px;
+    }
+
+    /* Плавающие кнопки для мобильных */
+    .rsvp-btn {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--main-color);
+      color: white;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-size: 1.2em;
+      font-weight: 600;
+      text-decoration: none;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      z-index: 1000;
+      display: none;
+    }
+
+    .rsvp-btn:hover { background: var(--accent-color); }
+
+    /* Мобильные: показываем кнопки */
+    @media (max-width: 768px) {
+      .rsvp-btn { display: block; }
+
+      .rsvp-btn:first-of-type { bottom: 60px; }  /* Сергею */
+      .rsvp-btn:last-of-type { bottom: 15px; }   /* Анне */
+
+      header h1 { font-size: 2.8em; }
+      header p { font-size: 1.3em; }
+      section { flex-direction: column; text-align: center; padding: 20px 15px; }
+      .text, .photo { flex: 1 1 100%; min-width: unset; }
+      .text { font-size: 1.2em; }
+      section h2 { font-size: 1.7em; }
+      #countdown { font-size: 1.4em; }
+    }
+
+    @media (max-width: 480px) {
+      header h1 { font-size: 2.3em; }
+      header p { font-size: 1.1em; }
+      .text { font-size: 1.1em; }
+      section h2 { font-size: 1.5em; }
+      #countdown { font-size: 1.3em; }
+    }
+  </style>
+</head>
+<body>
+  <header data-aos="fade-down">
+    <h1>Анна <span class="heart">❤</span> Сергей</h1>
+    <p>С огромной радостью приглашаем вас на наш самый важный день</p>
+    <p><strong>22 ноября 2025 года</strong></p>
+    <div id="countdown"></div>
+  </header>
+
+  <main>
+    <section data-aos="fade-up">
+      <div class="text">
+        <h2>Торжественная церемония</h2>
+        <p>
+          Наше бракосочетание состоится <strong>22 ноября 2025 года в 11:20</strong><br>
+          в Приморском ЗАГСе по адресу:<br>
+          <strong>Стародеревенская ул., 5, Санкт-Петербург</strong>.
+        </p>
+      </div>
+      <div class="photo">
+        <img src="photo_2025-09-19_18-42-49-fotor-20250919185421.png" alt="Анна и Сергей вместе">
+      </div>
+    </section>
+
+    <section data-aos="fade-up">
+      <div class="text">
+        <h2>Программа дня</h2>
+        <ul>
+          <li><strong>11:20</strong> — Торжественная церемония в Приморском ЗАГСе</li>
+          <li><strong>12:30–15:00</strong> — Свободное время для гостей</li>
+          <li><strong>15:00</strong> — Сбор в ресторане «Папаша Клаусс» (Приморский проспект, 72, Санкт-Петербург, этаж 4, Каминный зал)</li>
+          <li><strong>После</strong> — Праздничный банкет, танцы, конкурсы и свадебный торт 🎂</li>
+        </ul>
+      </div>
+      <div class="photo">
+        <img src="photo_2025-09-19_18-43-19-fotor-2025091919015.png" alt="Программа дня">
+      </div>
+    </section>
+
+    <section data-aos="fade-up">
+      <div class="text">
+        <h2>Свободное время</h2>
+        <p>
+          Между ЗАГСом и рестораном мы (жених и невеста) временно покинем вас,  
+          чтобы сделать памятные фотографии в Оранжерее Таврического сада.  
+          Мы очень надеемся, что это не доставит неудобств.
+        </p>
+        <p>
+          Для гостей свободное время с 12:30 до 15:00 —  
+          и мы уверены, что скучать не придётся! В «ПитерЛэнде», где находится ресторан,  
+          есть множество развлечений: квест-шоу, кинотеатр, парк аттракционов, зеркальный лабиринт  
+          и парк бабочек 🦋. Мы готовы компенсировать ваши расходы на эти развлечения.
+        </p>
+      </div>
+      <div class="photo">
+        <img src="photo_2025-09-19_18-43-14-fotor-2025091919448.png" alt="Свободное время">
+      </div>
+    </section>
+
+    <section data-aos="fade-up">
+      <div class="text">
+        <h2>Праздничный ужин</h2>
+        <p>
+          В <strong>15:00</strong> мы будем ждать всех гостей в ресторане «Папаша Клаусс».  
+          Вас ждёт вкусная еда, танцы, конкурсы и наш праздничный торт.  
+          Мы очень хотим провести этот день в кругу самых близких и дорогих нам людей ❤️
+        </p>
+      </div>
+      <div class="photo">
+        <img src="photo_2025-09-19_18-43-03-fotor-20250919185658.png" alt="Праздничный ужин">
+      </div>
+    </section>
+
+    <section data-aos="fade-up">
+      <div class="text">
+        <h2>Подтверждение участия</h2>
+        <p>
+          Пожалуйста, сообщите нам заранее о вашем присутствии,  
+          чтобы мы смогли всё организовать наилучшим образом.
+        </p>
+        <p style="text-align: center;">
+          <a href="mailto:you@example.com?subject=RSVP">Написать нам</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <footer data-aos="fade-up">
+    © 2025 Анна & Сергей
+  </footer>
+
+  <!-- Плавающие кнопки для мобильных -->
+  <a class="rsvp-btn" href="https://t.me/Seregaorange" target="_blank">Написать Сергею</a>
+  <a class="rsvp-btn" href="https://t.me/AnnaHolz" target="_blank">Написать Анне</a>
+
+  <!-- Таймер -->
+  <script>
+    const countdown = document.getElementById("countdown");
+    if (countdown) {
+      const weddingDate = new Date("Nov 22, 2025 11:20:00").getTime();
+
+      function updateCountdown() {
+        const now = Date.now();
+        const distance = weddingDate - now;
+
+        if (distance <= 0) {
+          countdown.textContent = "Свадьба уже состоялась 🎉";
+          clearInterval(interval);
+          return;
+        }
+
+        const days = Math.floor(distance / 86400000);
+        const hours = Math.floor((distance % 86400000) / 3600000);
+        const minutes = Math.floor((distance % 3600000) / 60000);
+        const seconds = Math.floor((distance % 60000) / 1000);
+
+        countdown.textContent = `До свадьбы осталось: ${days}д ${hours}ч ${minutes}м ${seconds}с`;
+      }
+
+      const interval = setInterval(updateCountdown, 1000);
+      updateCountdown();
+    }
+  </script>
+
+  <!-- Анимации -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>
