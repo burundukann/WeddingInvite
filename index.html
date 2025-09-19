@@ -5,18 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Свадебное приглашение — Анна & Сергей</title>
 
-  <!-- Подключение шрифтов -->
-  <link href="https://fonts.googleapis.com/css2?family=Segoe+Print&display=swap" rel="stylesheet">
+  <!-- Анимации -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
   <style>
-    /* Основные стили */
+    :root {
+      --main-color: #b91c1c;
+      --accent-color: #e11d48;
+      --text-color: #333;
+      --bg-light: rgba(255,255,255,0.95);
+      --font-heading: Georgia, serif;
+      --font-body: Consolas, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { font-size: 18px; }
+    @media (max-width: 768px) { html { font-size: 16px; } }
+    @media (max-width: 480px) { html { font-size: 15px; } }
+
     body {
-      font-family: 'OpenGostB', sans-serif;
+      font-family: var(--font-body);
       line-height: 1.6;
-      background: url('background.png') no-repeat center top fixed;
+      background: url("background.png") no-repeat center top fixed;
       background-size: cover;
       margin: 0;
       padding: 0;
-      color: #333;
+      color: var(--text-color);
+      overflow-x: hidden;
     }
 
     header {
@@ -27,73 +43,102 @@
     }
 
     header h1 {
-      font-family: 'Segoe Print', cursive;
-      font-size: 3.5rem;
-      color: #b91c1c;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      color: var(--main-color);
       margin-bottom: 10px;
     }
 
-    header .heart {
-      color: #e11d48;
-      font-size: 1.2em;
-      margin: 0 10px;
-    }
+    header .heart { color: var(--accent-color); font-size: 1.2em; margin: 0 10px; }
+    header p { font-size: clamp(1.2rem, 3vw, 1.6rem); color: #555; margin: 5px 0; }
+    #countdown { font-size: clamp(1.2rem, 3vw, 1.6rem); color: var(--main-color); margin-top: 15px; font-weight: 600; }
 
-    header p {
-      font-size: 1.5rem;
-      color: #555;
-      margin: 5px 0;
-    }
+    main { max-width: 1000px; margin: 20px auto; padding: 0 10px; }
 
-    /* Прочие стили */
     section {
-      background: rgba(255, 255, 255, 0.95);
+      background: var(--bg-light);
       margin: 20px 0;
       padding: 25px 20px;
       border-radius: 16px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: flex-start;
     }
 
     section h2 {
       margin-top: 0;
-      color: #b91c1c;
-      font-size: 2rem;
+      color: var(--main-color);
+      font-size: clamp(1.8rem, 4vw, 2.2rem);
       font-weight: 700;
-      font-family: 'Segoe Print', cursive;
+      font-family: var(--font-heading);
     }
 
+    .text {
+      flex: 1 1 55%;
+      min-width: 250px;
+      font-size: 1.1rem;
+    }
+
+    /* Блок "Программа дня" по правому краю */
+    section.program .text { text-align: right; }
+
+    .photo {
+      flex: 1 1 40%;
+      min-width: 250px;
+    }
+
+    .photo img {
+      width: 100%;
+      height: auto;
+      max-width: 100vw;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    ul { padding-left: 20px; margin: 0; }
+    ul li { margin: 10px 0; }
+
+    a { color: var(--main-color); text-decoration: none; font-weight: 600; }
+    a:hover { text-decoration: underline; }
+
+    footer {
+      margin: 40px auto;
+      font-size: 1.1em;
+      color: #555;
+      text-align: center;
+      background: rgba(255,255,255,0.7);
+      padding: 10px;
+      border-radius: 12px;
+      max-width: 300px;
+    }
+
+    .rsvp-container { text-align: center; margin-top: 20px; }
     .rsvp-btn {
       display: inline-block;
       margin: 10px;
       padding: 12px 20px;
-      background: #b91c1c;
+      background: var(--main-color);
       color: white;
       border-radius: 25px;
       font-size: 1.2em;
       font-weight: 600;
       text-decoration: none;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       transition: background 0.3s;
     }
+    .rsvp-btn:hover { background: var(--accent-color); }
 
-    .rsvp-btn:hover {
-      background: #e11d48;
-    }
-
-    footer {
-      margin: 40px auto;
-      font-size: 1em;
-      color: #555;
-      text-align: center;
-      background: rgba(255, 255, 255, 0.7);
-      padding: 10px;
-      border-radius: 12px;
-      max-width: 300px;
+    @media (max-width: 768px) {
+      section { flex-direction: column; text-align: center; padding: 20px 15px; }
+      .text, .photo { flex: 1 1 100%; min-width: unset; text-align: center !important; }
     }
   </style>
 </head>
 <body>
-  <header>
+  <header data-aos="fade-down">
     <h1>Анна <span class="heart">❤️</span> Сергей</h1>
     <p>С огромной радостью приглашаем вас на наш самый важный день</p>
     <p><strong>22 ноября 2025 года</strong></p>
@@ -101,66 +146,89 @@
   </header>
 
   <main>
-    <section>
-      <h2>Торжественная церемония</h2>
-      <p>
-        Наше бракосочетание состоится <strong>22 ноября 2025 года в 11:20</strong><br>
-        в Приморском ЗАГСе по адресу:<br>
-        <strong>Стародеревенская ул., 5, Санкт-Петербург</strong>.
-      </p>
+    <section data-aos="fade-up">
+      <div class="text">
+        <h2>Торжественная церемония</h2>
+        <p>
+          Наше бракосочетание состоится <strong>22 ноября 2025 года в 11:20</strong><br>
+          в Приморском ЗАГСе по адресу:<br>
+          <strong>Стародеревенская ул., 5, Санкт-Петербург</strong>.
+        </p>
+      </div>
+      <div class="photo">
+        <img src="photo_2025-09-19_18-42-49-fotor-20250919185421.png" alt="Анна и Сергей вместе">
+      </div>
     </section>
 
-    <section>
-      <h2>Программа дня</h2>
-      <ul>
-        <li><strong>11:20</strong> — Торжественная церемония в Приморском ЗАГСе</li>
-        <li><strong>12:30–15:00</strong> — Свободное время для гостей</li>
-        <li><strong>15:00</strong> — Сбор в ресторане «Папаша Клаусс»</li>
-        <li><strong>После</strong> — Праздничный банкет, танцы, конкурсы и свадебный торт 🎂</li>
-      </ul>
+    <section class="program" data-aos="fade-up">
+      <div class="text">
+        <h2>Программа дня</h2>
+        <ul>
+          <li><strong>11:20</strong> — Торжественная церемония в Приморском ЗАГСе</li>
+          <li><strong>12:30–15:00</strong> — Свободное время для гостей</li>
+          <li><strong>15:00</strong> — Сбор в ресторане «Папаша Клаусс» (Приморский проспект, 72, Санкт-Петербург, этаж 4, Каминный зал)</li>
+          <li><strong>После</strong> — Праздничный банкет, танцы, конкурсы и свадебный торт 🎂</li>
+        </ul>
+      </div>
+      <div class="photo">
+        <img src="photo_2025-09-19_18-43-19-fotor-2025091919015.png" alt="Программа дня">
+      </div>
     </section>
 
-    <section>
-      <h2>Свободное время</h2>
-      <p>
-        Между ЗАГСом и рестораном мы (жених и невеста) временно покинем вас,  
-        чтобы сделать памятные фотографии в Оранжерее Таврического сада.  
-        Мы очень надеемся, что это не доставит неудобств.
-      </p>
-      <p>
-        Для гостей свободное время с 12:30 до 15:00 —  
-        и мы уверены, что скучать не придётся! В «ПитерЛэнде», где находится ресторан,  
-        есть множество развлечений: квест-шоу, кинотеатр, парк аттракционов, зеркальный лабиринт  
-        и парк бабочек 🦋. Мы готовы компенсировать ваши расходы на эти развлечения.
-      </p>
+    <section data-aos="fade-up">
+      <div class="text">
+        <h2>Свободное время</h2>
+        <p>
+          Между ЗАГСом и рестораном мы (жених и невеста) временно покинем вас,  
+          чтобы сделать памятные фотографии в Оранжерее Таврического сада.  
+          Мы очень надеемся, что это не доставит неудобств.
+        </p>
+        <p>
+          Для гостей свободное время с 12:30 до 15:00 —  
+          и мы уверены, что скучать не придётся! В «ПитерЛэнде», где находится ресторан,  
+          есть множество развлечений: квест-шоу, кинотеатр, парк аттракционов, зеркальный лабиринт  
+          и парк бабочек 🦋. Мы готовы компенсировать ваши расходы на эти развлечения.
+        </p>
+      </div>
+      <div class="photo">
+        <img src="photo_2025-09-19_18-43-14-fotor-2025091919448.png" alt="Свободное время">
+      </div>
     </section>
 
-    <section>
-      <h2>Праздничный ужин</h2>
-      <p>
-        В <strong>15:00</strong> мы будем ждать всех гостей в ресторане «Папаша Клаусс».  
-        Вас ждёт вкусная еда, танцы, конкурсы и наш праздничный торт.  
-        Мы очень хотим провести этот день в кругу самых близких и дорогих нам людей ❤️
-      </p>
+    <section data-aos="fade-up">
+      <div class="text">
+        <h2>Праздничный ужин</h2>
+        <p>
+          В <strong>15:00</strong> мы будем ждать всех гостей в ресторане «Папаша Клаусс».  
+          Вас ждёт вкусная еда, танцы, конкурсы и наш праздничный торт.  
+          Мы очень хотим провести этот день в кругу самых близких и дорогих нам людей ❤️
+        </p>
+      </div>
+      <div class="photo">
+        <img src="photo_2025-09-19_18-43-03-fotor-20250919185658.png" alt="Праздничный ужин">
+      </div>
     </section>
 
-    <section>
-      <h2>Подтверждение участия</h2>
-      <p>
-        Пожалуйста, сообщите нам заранее о вашем присутствии,  
-        чтобы мы смогли всё организовать наилучшим образом.
-      </p>
-      <div>
-        <a class="rsvp-btn" href="https://t.me/AnnaHolz" target="_blank">Написать Анне</a>
-        <a class="rsvp-btn" href="https://t.me/Seregaorange" target="_blank">Написать Сергею</a>
+    <section data-aos="fade-up">
+      <div class="text">
+        <h2>Подтверждение участия</h2>
+        <p>
+          Пожалуйста, сообщите нам заранее о вашем присутствии,  
+          чтобы мы смогли всё организовать наилучшим образом.
+        </p>
+        <div class="rsvp-container">
+          <a class="rsvp-btn" href="https://t.me/AnnaHolz" target="_blank">Написать Анне</a>
+          <a class="rsvp-btn" href="https://t.me/Seregaorange" target="_blank">Написать Сергею</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer>
+  <footer data-aos="fade-up">
     © 2025 Анна & Сергей
   </footer>
 
+  <!-- Таймер -->
   <script>
     const countdown = document.getElementById("countdown");
     if (countdown) {
@@ -182,6 +250,12 @@
       const interval = setInterval(updateCountdown, 1000);
       updateCountdown();
     }
+  </script>
+
+  <!-- Анимации -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1000, once: true });
   </script>
 </body>
 </html>
