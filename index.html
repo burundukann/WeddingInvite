@@ -248,7 +248,7 @@
         const hours = Math.floor((distance % 86400000) / 3600000);
         const minutes = Math.floor((distance % 3600000) / 60000);
         const seconds = Math.floor((distance % 60000) / 1000);
-        countdown.textContent = `До свадьбы осталось: <p>${days}д ${hours}ч ${minutes}м ${seconds}с`</p>;
+        countdown.textContent = `До свадьбы осталось: ${days}д ${hours}ч ${minutes}м ${seconds}с`;
       }
       const interval = setInterval(updateCountdown, 1000);
       updateCountdown();
@@ -262,6 +262,7 @@
   </script>
 </body>
 </html>
+
 
 
 
