@@ -6,7 +6,7 @@
   <title>Свадебное приглашение — Анна & Сергей</title>
 
   <!-- Шрифты -->
-  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Sacramento&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
   <!-- Анимации -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
@@ -16,20 +16,30 @@
       --accent-color: #e11d48;
       --text-color: #333;
       --bg-light: rgba(255,255,255,0.95);
-      --font-heading: 'Alex Brush';
-      --font-body: 'ST Brigantina';
+      --font-heading: 'Alex Brush', cursive;
+      --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
 
     * { box-sizing: border-box; }
 
+    /* Responsive Typography */
+    html {
+      font-size: 16px; /* базовый размер для десктопа */
+    }
+
+    @media (max-width: 1200px) { html { font-size: 15px; } }
+    @media (max-width: 992px) { html { font-size: 14px; } }
+    @media (max-width: 768px) { html { font-size: 13px; } }
+    @media (max-width: 480px) { html { font-size: 12px; } }
+
     body {
       font-family: var(--font-body);
+      line-height: 1.6;
       background: url("background.png") no-repeat center top fixed;
       background-size: cover;
       margin: 0;
       padding: 0;
       color: var(--text-color);
-      line-height: 1.8;
       overflow-x: hidden;
     }
 
@@ -42,8 +52,8 @@
 
     header h1 {
       font-family: var(--font-heading);
-      font-size: 3.5em;
       font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.5rem); /* динамический размер */
       color: var(--main-color);
       margin-bottom: 10px;
     }
@@ -55,13 +65,13 @@
     }
 
     header p {
-      font-size: 1.4em;
+      font-size: clamp(1rem, 2.5vw, 1.4rem); /* адаптивный размер */
       color: #555;
       margin: 5px 0;
     }
 
     #countdown {
-      font-size: 1.5em;
+      font-size: clamp(1rem, 2.5vw, 1.5rem);
       color: var(--main-color);
       margin-top: 15px;
       font-weight: 600;
@@ -88,15 +98,14 @@
     section h2 {
       margin-top: 0;
       color: var(--main-color);
-      font-size: 2em;
-      font-weight: 600;
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-weight: 700;
+      font-family: var(--font-heading);
     }
 
     .text {
       flex: 1 1 55%;
       min-width: 250px;
-      font-size: 1.3em;
-      line-height: 1.6;
     }
 
     .photo {
@@ -111,7 +120,6 @@
     }
 
     ul { padding-left: 20px; margin: 0; }
-
     ul li { margin: 10px 0; }
 
     a {
@@ -119,7 +127,6 @@
       text-decoration: none;
       font-weight: 600;
     }
-
     a:hover { text-decoration: underline; }
 
     footer {
@@ -133,53 +140,39 @@
       max-width: 300px;
     }
 
-    /* Плавающие кнопки для мобильных */
+    /* RSVP кнопки */
+    .rsvp-container {
+      text-align: center;
+      margin-top: 20px;
+    }
+
     .rsvp-btn {
-      position: fixed;
-      left: 50%;
-      transform: translateX(-50%);
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 20px;
       background: var(--main-color);
       color: white;
-      padding: 12px 20px;
       border-radius: 25px;
       font-size: 1.2em;
       font-weight: 600;
       text-decoration: none;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-      z-index: 1000;
-      display: none;
+      transition: background 0.3s;
     }
 
-    .rsvp-btn:hover { background: var(--accent-color); }
+    .rsvp-btn:hover {
+      background: var(--accent-color);
+    }
 
-    /* Мобильные: показываем кнопки */
     @media (max-width: 768px) {
-      .rsvp-btn { display: block; }
-
-      .rsvp-btn:first-of-type { bottom: 60px; }  /* Сергею */
-      .rsvp-btn:last-of-type { bottom: 15px; }   /* Анне */
-
-      header h1 { font-size: 2.8em; }
-      header p { font-size: 1.3em; }
       section { flex-direction: column; text-align: center; padding: 20px 15px; }
       .text, .photo { flex: 1 1 100%; min-width: unset; }
-      .text { font-size: 1.2em; }
-      section h2 { font-size: 1.7em; }
-      #countdown { font-size: 1.4em; }
-    }
-
-    @media (max-width: 480px) {
-      header h1 { font-size: 2.3em; }
-      header p { font-size: 1.1em; }
-      .text { font-size: 1.1em; }
-      section h2 { font-size: 1.5em; }
-      #countdown { font-size: 1.3em; }
     }
   </style>
 </head>
 <body>
   <header data-aos="fade-down">
-    <h1>Анна <span class="heart">❤</span> Сергей</h1>
+    <h1>Анна <span class="heart">❤️</span> Сергей</h1>
     <p>С огромной радостью приглашаем вас на наш самый важный день</p>
     <p><strong>22 ноября 2025 года</strong></p>
     <div id="countdown"></div>
@@ -189,9 +182,9 @@
     <section data-aos="fade-up">
       <div class="text">
         <h2>Торжественная церемония</h2>
-        <p>Наше бракосочетание состоится</p> 
-          <p><strong>22 ноября 2025 года в 11:20</strong></p>
-        <br>          в Приморском ЗАГСе по адресу:<br>
+        <p>
+          Наше бракосочетание состоится <strong>22 ноября 2025 года в 11:20</strong><br>
+          в Приморском ЗАГСе по адресу:<br>
           <strong>Стародеревенская ул., 5, Санкт-Петербург</strong>.
         </p>
       </div>
@@ -256,9 +249,10 @@
           Пожалуйста, сообщите нам заранее о вашем присутствии,  
           чтобы мы смогли всё организовать наилучшим образом.
         </p>
-        <p style="text-align: center;">
-          <a href="mailto:you@example.com?subject=RSVP">Написать нам</a>
-        </p>
+        <div class="rsvp-container">
+          <a class="rsvp-btn" href="https://t.me/AnnaHolz" target="_blank">Написать Анне</a>
+          <a class="rsvp-btn" href="https://t.me/Seregaorange" target="_blank">Написать Сергею</a>
+        </div>
       </div>
     </section>
   </main>
@@ -267,34 +261,25 @@
     © 2025 Анна & Сергей
   </footer>
 
-  <!-- Плавающие кнопки для мобильных -->
-  <a class="rsvp-btn" href="https://t.me/Seregaorange" target="_blank">Написать Сергею</a>
-  <a class="rsvp-btn" href="https://t.me/AnnaHolz" target="_blank">Написать Анне</a>
-
   <!-- Таймер -->
   <script>
     const countdown = document.getElementById("countdown");
     if (countdown) {
       const weddingDate = new Date("Nov 22, 2025 11:20:00").getTime();
-
       function updateCountdown() {
         const now = Date.now();
         const distance = weddingDate - now;
-
         if (distance <= 0) {
           countdown.textContent = "Свадьба уже состоялась 🎉";
           clearInterval(interval);
           return;
         }
-
         const days = Math.floor(distance / 86400000);
         const hours = Math.floor((distance % 86400000) / 3600000);
         const minutes = Math.floor((distance % 3600000) / 60000);
         const seconds = Math.floor((distance % 60000) / 1000);
-
         countdown.textContent = `До свадьбы осталось: ${days}д ${hours}ч ${minutes}м ${seconds}с`;
       }
-
       const interval = setInterval(updateCountdown, 1000);
       updateCountdown();
     }
@@ -303,13 +288,7 @@
   <!-- Анимации -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
-    });
+    AOS.init({ duration: 1000, once: true });
   </script>
 </body>
 </html>
-
-
-
